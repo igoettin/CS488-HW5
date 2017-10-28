@@ -6,10 +6,12 @@ sub calculate_fold_diff{
     open(my $write_file, ">", $output_filename);
     print $write_file "Gene,Fold_Difference\n";
     my @range_counts = (0,0,0,0,0,0,0,0,0,0);
+    #largest_fold_diff set to 1 so it can be increased, lowest_fold_diff set to 800 so it can be decreased.
     my($skip_ID_row,$largest_fold_diff,$lowest_fold_diff,$largest_count,$lowest_count) = (1,1,800,0,0);
     while(my $row = <$read_file>){
         if($skip_ID_row){$skip_ID_row = 0;}
         else{
+            #max_value set to 20 so it can be increased, min_value set to 16000 so it can be decreased.
             my($gene_name,$max_value,$min_value,$skip_gene_name) = ("",20,16000,1);
             foreach my $element (split(/,/,$row)){
                 if($skip_gene_name){
@@ -51,12 +53,13 @@ sub calculate_fold_diff{
             print $write_file $result_line;
         }
     }
+    #Print the statistics for the fold differences if the flag was set.
     if($print_stats_flag == 1){
-        print "Statistics generated when calculating the fold difference of genes in ".$input_filename."\n";
-        print "------------------------------------------------------------------------------------------\n";
+        print "Statistics generated when calculating the fold difference of genes in ".$input_filename.":\n";
+        print "-----------------------------------------------------------\n";
         print "The largest fold difference is ".$largest_fold_diff." with ".$largest_count." genes having it.\n";
         print "The lowest fold difference is ".$lowest_fold_diff." with ".$lowest_count." genes having it.\n";
-        print "------------------------------------------------------------------------------------------\n";
+        print "-----------------------------------------------------------\n";
         print "Counts of fold differences that fall within each range:\n";
         print "==============================\n";
         print "Range            |       Count\n";
@@ -73,19 +76,4 @@ sub calculate_fold_diff{
     }
 }
 
-sub find_largest_fold_diff{
-    my($input_filename) = @_;
-    open(my $read_file, "<", $input_filename);
-    my $skip_gene_row = 1;
-    while(my $row = <$read_file>){
-        if($skip_gene_row)
-            {$skip_gene_row = 0;}
-        else{
-            
-
-        }
-    }
-
-}
-
-calculate_fold_diff("ALL_AML_gr.thr.train.csv","out.txt",1);
+calculate_fold_diff("ALL_AML_gr.thr.train.csv","genes_fold_differences.txt",1);
