@@ -1,3 +1,12 @@
+###############
+#fold_diff.pl
+###############
+#
+#Perl script that calculates the fold difference of each gene in the file ALL_AML_gr.thr.train.csv
+#
+#The results of the calculation are written to the file "genes_fold_differences.txt"
+#The format of genes_fold_differences.txt is G,F where G is the gene name and F is the fold difference for that gene.
+#
 use strict;
 use warnings;
 sub calculate_fold_diff{
@@ -74,6 +83,8 @@ sub calculate_fold_diff{
         print "256 < Val <= 512 |       ".$range_counts[8]."\n";
         print "512 < Val        |       ".$range_counts[9]."\n";
     }
+    close($read_file);
+    close($write_file);
 }
 
 calculate_fold_diff("ALL_AML_gr.thr.train.csv","genes_fold_differences.txt",1);
