@@ -17,7 +17,7 @@ sub standard_deviation{
 
 sub signal_to_noise{
     my($Avg1,$Avg2,$Stdev1,$Stdev2) = @_;
-    return ($Avg1 - $Avg2)/($Stdev1 - $Stdev2);
+    return ($Avg1 - $Avg2)/($Stdev1 + $Stdev2);
 }
 
 sub T_value{
