@@ -1,0 +1,2 @@
+The number of top 50 common samples for ALL is: 21
+The number of top 50 common samples for AML is: 49
