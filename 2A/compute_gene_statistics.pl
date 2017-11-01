@@ -50,7 +50,7 @@ sub print_result{
 #S2N_AML prints only the S2N ratio for AML along with the gene name.
 #T_value_ALL prints only the T-value for ALL along with the gene name.
 #T_value_AML prints only the T-value for AML along with the gene name.
-#default prints all statistics incliding averages, standard deviations, s2n ratios, and t-values.
+#default prints all statistics including averages, standard deviations, s2n ratios, and t-values.
 #
 sub calculate_stats{
     my($input_filename, $output_filename, $mode) = @_;    
