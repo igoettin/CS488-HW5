@@ -15,20 +15,25 @@ sub calculate_fold_diff{
     open(my $write_file, ">", $output_filename);
     print $write_file "Gene,Fold_Difference\n";
     my @range_counts = (0,0,0,0,0,0,0,0,0,0);
-    #largest_fold_diff set to 1 so it can be increased, lowest_fold_diff set to 800 so it can be decreased.
-    my($skip_ID_row,$largest_fold_diff,$lowest_fold_diff,$largest_count,$lowest_count) = (1,1,800,0,0);
+    #largest_fold_diff set to 1 so it can be increased, lowest_fold_diff set to 50000 so it can be decreased.
+    my($skip_ID_row,$largest_fold_diff,$lowest_fold_diff,$largest_count,$lowest_count) = (1,0,50000,0,0);
     while(my $row = <$read_file>){
         if($skip_ID_row){$skip_ID_row = 0;}
         else{
             #max_value set to 20 so it can be increased, min_value set to 16000 so it can be decreased.
-            my($gene_name,$max_value,$min_value,$skip_gene_name) = ("",20,16000,1);
+            my($gene_name,$max_value,$min_value,$skip_gene_name,$init) = ("",0,0,1,1);
             foreach my $element (split(/,/,$row)){
                 if($skip_gene_name){
                     $gene_name = $element;
                     $skip_gene_name = 0;
                 }
                 else{
-                    if($element < $min_value){$min_value = $element;}
+                    if($init){
+                        $min_value = $element;
+                        $max_value = $element;
+                        $init = 0;
+                    }
+                    elsif($element < $min_value){$min_value = $element;}
                     elsif($element > $max_value){$max_value = $element;}
                 }
             }
