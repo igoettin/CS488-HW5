@@ -71,15 +71,15 @@ sub calculate_stats{
             my @row_array = (split(/,/,$row));
             my $gene_name = $row_array[0];
             my($N1, $Sum_val_1, $Sum_sq_1) = (27,0,0);
-            for(my $i = 1; $i <= $N1; $i++){
+            for(my $i = 1; $i <= 27; $i++){
                    $Sum_val_1 += $row_array[$i];
                    $Sum_sq_1 += ($row_array[$i] * $row_array[$i]);
             }
             #Calculate avg and stdev for ALL
             my $Avg1 = average($Sum_val_1,$N1);
             my $Stdev1 = standard_deviation($N1,$Sum_val_1,$Sum_sq_1);
-            my($N2, $Sum_val_2, $Sum_sq_2) = (38,0,0);
-            for(my $i = 28; $i <= $N2; $i++){
+            my($N2, $Sum_val_2, $Sum_sq_2) = (11,0,0);
+            for(my $i = 28; $i <= 38; $i++){
                 $Sum_val_2 += $row_array[$i];
                 $Sum_sq_2 += ($row_array[$i] * $row_array[$i]);
             }
