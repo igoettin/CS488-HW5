@@ -1,0 +1,18 @@
+Statistics generated when calculating the fold difference of genes in ALL_AML_gr.thr.train.csv:
+-----------------------------------------------------------
+The largest fold difference is 800 with 17 genes having it.
+The lowest fold difference is 1 with 476 genes having it.
+-----------------------------------------------------------
+Counts of fold differences that fall within each range:
+==============================
+Range            |       Count
+Val <= 2         |       644
+2 < Val <= 4     |       469
+4 < Val <= 8     |       1363
+8 < Val <= 16    |       1643
+16 < Val <= 32   |       1387
+32 < Val <= 64   |       840
+64 < Val <= 128  |       407
+128 < Val <= 256 |       183
+256 < Val <= 512 |       88
+512 < Val        |       46
